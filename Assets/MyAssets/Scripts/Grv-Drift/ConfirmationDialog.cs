@@ -2,76 +2,83 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class ConfirmationDialog : MonoBehaviour
+namespace zoya.game
 {
-    public static ConfirmationDialog Instance { get; private set; }
 
-    [SerializeField] private GameObject dialogPanel;
-    [SerializeField] private TMP_Text titleText;
-    [SerializeField] private TMP_Text messageText;
-    [SerializeField] private Button confirmButton;
-    [SerializeField] private Button cancelButton;
 
-    private System.Action _onConfirm;
 
-    private void Awake()
+
+    public class ConfirmationDialog : MonoBehaviour
     {
-        if (Instance == null)
+        public static ConfirmationDialog Instance { get; private set; }
+
+        [SerializeField] private GameObject dialogPanel;
+        [SerializeField] private TMP_Text titleText;
+        [SerializeField] private TMP_Text messageText;
+        [SerializeField] private Button confirmButton;
+        [SerializeField] private Button cancelButton;
+
+        private System.Action _onConfirm;
+
+        private void Awake()
         {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
+            if (Instance == null)
+            {
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+
+            dialogPanel.SetActive(false);
         }
-        else
+
+        public static void Show(string title, string message, System.Action onConfirm)
         {
-            Destroy(gameObject);
+            Instance.ShowDialog(title, message, onConfirm);
         }
 
-        dialogPanel.SetActive(false);
+        public void ShowDialog(string title, string message, System.Action onConfirm)
+        {
+            titleText.text = title;
+            messageText.text = message;
+            _onConfirm = onConfirm;
+
+            confirmButton.onClick.RemoveAllListeners();
+            confirmButton.onClick.AddListener(OnConfirm);
+
+            cancelButton.onClick.RemoveAllListeners();
+            cancelButton.onClick.AddListener(HideDialog);
+
+            dialogPanel.SetActive(true);
+        }
+
+        private void OnConfirm()
+        {
+            _onConfirm?.Invoke();
+            HideDialog();
+        }
+
+        private void HideDialog()
+        {
+            dialogPanel.SetActive(false);
+        }
+        public void ShowDialogInstance(string title, string message, System.Action onConfirm)
+        {
+            titleText.text = title;
+            messageText.text = message;
+            _onConfirm = onConfirm;
+
+            confirmButton.onClick.RemoveAllListeners();
+            confirmButton.onClick.AddListener(OnConfirm);
+
+            cancelButton.onClick.RemoveAllListeners();
+            cancelButton.onClick.AddListener(HideDialog);
+
+            dialogPanel.SetActive(true);
+        }
+
     }
-
-    public static void Show(string title, string message, System.Action onConfirm)
-    {
-        Instance.ShowDialog(title, message, onConfirm);
-    }
-
-    public void ShowDialog(string title, string message, System.Action onConfirm)
-    {
-        titleText.text = title;
-        messageText.text = message;
-        _onConfirm = onConfirm;
-
-        confirmButton.onClick.RemoveAllListeners();
-        confirmButton.onClick.AddListener(OnConfirm);
-
-        cancelButton.onClick.RemoveAllListeners();
-        cancelButton.onClick.AddListener(HideDialog);
-
-        dialogPanel.SetActive(true);
-    }
-
-    private void OnConfirm()
-    {
-        _onConfirm?.Invoke();
-        HideDialog();
-    }
-
-    private void HideDialog()
-    {
-        dialogPanel.SetActive(false);
-    }
-    public void ShowDialogInstance(string title, string message, System.Action onConfirm)
-{
-    titleText.text = title;
-    messageText.text = message;
-    _onConfirm = onConfirm;
-
-    confirmButton.onClick.RemoveAllListeners();
-    confirmButton.onClick.AddListener(OnConfirm);
-
-    cancelButton.onClick.RemoveAllListeners();
-    cancelButton.onClick.AddListener(HideDialog);
-
-    dialogPanel.SetActive(true);
-}
-
 }

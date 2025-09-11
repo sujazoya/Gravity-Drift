@@ -22,6 +22,10 @@ using FishNet.Object.Synchronizing;
 using FishNet.Object; // Required for ServerRpc, ObserversRpc, TargetRpc
 
 
+namespace zoya.game
+{
+    
+
 
 
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
@@ -939,25 +943,27 @@ public class AdvancedNetworkManagerController : NetworkBehaviour
     }
 }
 
-// UI component for player list items
-public class PlayerListItemUI : MonoBehaviour
-{
-    [SerializeField] private TMP_Text playerNameText;
-    [SerializeField] private TMP_Text readyStatusText;
-    [SerializeField] private TMP_Text pingText;
-    [SerializeField] private Image teamIndicator;
-    [SerializeField] private Image hostIndicator;
-
-    public void Initialize(string name, int teamId, bool isReady, bool isHost, int ping)
+    // UI component for player list items
+    public class PlayerListItemUI : MonoBehaviour
     {
-        playerNameText.text = name;
-        readyStatusText.text = isReady ? "Ready" : "Not Ready";
-        readyStatusText.color = isReady ? Color.green : Color.red;
-        pingText.text = $"{ping}ms";
-        
-        teamIndicator.color = teamId == 1 ? Color.red : 
-                            teamId == 2 ? Color.blue : Color.gray;
-        
-        hostIndicator.gameObject.SetActive(isHost);
+        [SerializeField] private TMP_Text playerNameText;
+        [SerializeField] private TMP_Text readyStatusText;
+        [SerializeField] private TMP_Text pingText;
+        [SerializeField] private Image teamIndicator;
+        [SerializeField] private Image hostIndicator;
+
+        public void Initialize(string name, int teamId, bool isReady, bool isHost, int ping)
+        {
+            playerNameText.text = name;
+            readyStatusText.text = isReady ? "Ready" : "Not Ready";
+            readyStatusText.color = isReady ? Color.green : Color.red;
+            pingText.text = $"{ping}ms";
+
+            teamIndicator.color = teamId == 1 ? Color.red :
+                                teamId == 2 ? Color.blue : Color.gray;
+
+            hostIndicator.gameObject.SetActive(isHost);
+        }
+
     }
 }
