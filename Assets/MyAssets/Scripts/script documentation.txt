@@ -1,0 +1,21 @@
+// Spawn an object from pool
+NetworkObject projectile = ObjectPooler.Instance.SpawnFromPool(
+    "projectile_pool", 
+    transform.position, 
+    transform.rotation,
+    base.Owner
+);
+
+// Return to pool later
+ObjectPooler.Instance.ReturnToPool(projectile);
+
+
+ public readonly SyncVar<float> Health = new SyncVar<float>();
+    public readonly SyncVar<float> Shield = new SyncVar<float>();
+    public readonly SyncVar<int> Ammo = new SyncVar<int>();
+    public readonly SyncVar<int> Score = new SyncVar<int>();
+
+    public readonly SyncVar<int> TeamId = new SyncVar<int>();
+    public readonly SyncVar<bool> IsBoosting = new SyncVar<bool>();
+    public readonly SyncVar<bool> IsBraking = new SyncVar<bool>();
+    public readonly SyncVar<bool> IsDead = new SyncVar<bool>();

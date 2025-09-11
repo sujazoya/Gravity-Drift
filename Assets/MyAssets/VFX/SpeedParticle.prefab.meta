@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 0ebc6a6fa5fe6af4ea17c66f34140a7c
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 305306
+  packageName: Plane Runner 3D- Game Template
+  packageVersion: 1.0
+  assetPath: Assets/PlaneRunner/Prefabs/Particles/SpeedParticle.prefab
+  uploadId: 717364

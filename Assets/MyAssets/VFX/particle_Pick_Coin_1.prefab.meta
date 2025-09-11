@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 2ede175a9bbf1364eaf7efcf8353719d
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 305306
+  packageName: Plane Runner 3D- Game Template
+  packageVersion: 1.0
+  assetPath: Assets/PlaneRunner/Prefabs/Particles/particle_Pick_Coin_1.prefab
+  uploadId: 717364
