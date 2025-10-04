@@ -118,7 +118,7 @@ public class NetworkUIController : MonoBehaviour
     {
         if (networkManager == null)
         {
-            networkManager = FindObjectOfType<GameNetworkManager>();
+            networkManager = FindFirstObjectByType <GameNetworkManager>();
             if (networkManager == null) return;
         }
 

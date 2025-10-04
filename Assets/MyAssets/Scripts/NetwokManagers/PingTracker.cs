@@ -19,7 +19,7 @@ public class PingTracker : NetworkBehaviour
     [ContextMenu("Send Ping")]
     public void SendPing()
     {
-        if (IsClient)
+        if (IsClientInitialized)
         {
             _lastPingTime = Time.time;
             CmdSendPing();
